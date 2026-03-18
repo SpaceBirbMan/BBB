@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f0f4f8;
+  --color-foreground: #1e293b;
+  --color-primary: #22c55e;
+  --color-primary-hover: #16a34a;
+  --color-secondary: #a855f7;
+  --color-secondary-hover: #9333ea;
+  --color-surface: #ffffff;
+}
+
+@layer base {
+  .dark {
+    --color-background: #0f172a;
+    --color-foreground: #f8fafc;
+    --color-primary: #22c55e;
+    --color-primary-hover: #16a34a;
+    --color-secondary: #a855f7;
+    --color-secondary-hover: #9333ea;
+    --color-surface: #1e293b;
+  }
+}
+
+body {
+  @apply bg-background text-foreground transition-colors duration-300;
+  /* Add subtle background gradients as in mockups */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.dark body {
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(34, 197, 94, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.08) 0%, transparent 50%);
+}
+
+/* Glassmorphism utilities */
+.glass {
+  @apply bg-surface/70 backdrop-blur-md border border-white/20 shadow-xl;
+}
+.dark .glass {
+  @apply bg-surface/70 border-white/10;
+}
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .glass {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+}
